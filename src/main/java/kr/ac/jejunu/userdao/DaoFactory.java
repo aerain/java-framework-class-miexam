@@ -21,7 +21,11 @@ public class DaoFactory {
 
     @Bean
     public UserDao userDao() {
-        return new UserDao(dataSource());
+        return new UserDao(context());
+    }
+
+    private Context context() {
+        return new Context(dataSource());
     }
 
     @Bean
