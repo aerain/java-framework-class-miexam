@@ -2,6 +2,8 @@ package kr.ac.jejunu.userdao;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
 
@@ -13,8 +15,8 @@ public class UserDaoTests {
 
     @Before
     public void setup() {
-        DaoFactory daoFactory = new DaoFactory();
-        userdao = daoFactory.userDao();
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(DaoFactory.class);
+        userdao = applicationContext.getBean("userDao", UserDao.class);
     }
     @Test
     public void testGet() throws SQLException, ClassNotFoundException {
